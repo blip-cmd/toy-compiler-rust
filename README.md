@@ -30,7 +30,7 @@ Execution / Bytecode / Machine Code
 - [x] 0.3 Blank folder to first commit
 - [x] 0.4 Push to GitHub
 - [x] 0.5 README plan
-- [ ] 0.6 Level 1 language spec
+- [x] 0.6 Level 1 language spec
 - [ ] 0.7 Library and main
 
 ### Level 1: Arithmetic calculator
