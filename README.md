@@ -1,42 +1,58 @@
-1. Build the Front-End Pipeline First (Immediate Next Step)
+# Toy Compiler in Rust
 
-Implement the core modules outlined in the architecture using standard library Python (dataclasses, typing, enums, no heavy external dependencies):
+A hands-on, educational compiler built from scratch in Rust, translating high-level expressions into lowered execution targets without external parsing frameworks.
 
-tokens.py: Define TokenType enum and Token dataclass with line and column tracking for clear error diagnostics.
-lexer.py: Character scanner supporting identifiers, numbers, operators (+, -, *, /, =), keywords (let), and punctuation (;, (, )).
-ast_nodes.py: Minimal AST node hierarchy (Program, VarDecl, BinaryOp, Literal, VariableReference).
-parser.py: Recursive descent parser enforcing operator precedence climbing (or grammar-level layering: statements 
-→
-→ expressions 
-→
-→ terms 
-→
-→ factors).
-symbol_table.py & sema.py: Scoped environment tracking types (int, str, bool) and catching duplicate declarations or undeclared identifiers.
-demo.py: Interactive CLI showing step-by-step transformations from source string 
-→
-→ tokens 
-→
-→ pretty-printed AST 
-→
-→ semantic checks.
+We chose Rust to learn compiler engineering with explicit memory layout, algebraic data types (`enum`), and exhaustive pattern matching (`match`), balancing low-level control with safety.
 
+## Architecture Pipeline
 
-2. Choose the Next Architecture Milestone
+```text
+Source Code
+    │
+    ▼ (Lexer)
+Token Stream
+    │
+    ▼ (Parser)
+Abstract Syntax Tree (AST)
+    │
+    ▼ (Semantic Analyzer)
+Decorated AST / Type Checked
+    │
+    ▼ (Evaluator / IR Lowering)
+Execution / Bytecode / Machine Code
+```
 
-Once the front-end produces a validated AST, you can extend the compiler down one of three tracks:
+## Progress
 
-Tree-Walk Interpreter / Evaluator:
+### Level 0: Setup and plan
+- [x] 0.1 Diagnostic
+- [x] 0.2 Pipeline picture
+- [x] 0.3 Blank folder to first commit
+- [x] 0.4 Push to GitHub
+- [x] 0.5 README plan
+- [ ] 0.6 Level 1 language spec
+- [ ] 0.7 Library and main
 
-The fastest way to execute code directly from the AST.
-Great for learning runtime environments and variable lookup before dealing with low-level targets.
-
-Stack-Based Bytecode Virtual Machine (VM):
-
-Compile AST to linear bytecode instructions (e.g., LOAD_CONST, STORE_VAR, BINARY_ADD, PRINT).
-Write a compact virtual machine with an instruction pointer, value stack, and memory frame. This directly illustrates how runtimes like CPython, JVM, or Lua work.
-
-Lowering to Intermediate Representation (3-Address Code / LLVM-lite):
-
-Convert expressions into flattened TAC (Three-Address Code) with virtual registers (e.g., t0 = 3 * radius; t1 = t0 + 1).
-Serves as the foundation for optimization passes (constant folding, dead code elimination).
+### Level 1: Arithmetic calculator
+- [ ] 1.1 Tokens in theory
+- [ ] 1.2 First file, first lines (`src/token.rs`)
+- [ ] 1.3 Finish the token kinds
+- [ ] 1.4 Token with position
+- [ ] 1.5 Lexer skeleton
+- [ ] 1.6 Single-character tokens
+- [ ] 1.7 Integers
+- [ ] 1.8 Lexer errors
+- [ ] 1.9 Dump tokens (`--dump-tokens`)
+- [ ] 1.10 Lexer golden tests
+- [ ] 1.11 Checkpoint A
+- [ ] 1.12 Grammar in theory
+- [ ] 1.13 Write the EBNF (`docs/grammar.ebnf`)
+- [ ] 1.14 The AST (`src/ast.rs`)
+- [ ] 1.15 Parser skeleton
+- [ ] 1.16 Primary expressions
+- [ ] 1.17 Precedence and associativity
+- [ ] 1.18 Parse errors
+- [ ] 1.19 Dump AST (`--dump-ast`)
+- [ ] 1.20 Tree-walking evaluator
+- [ ] 1.21 End-to-end tests and CI
+- [ ] 1.22 Checkpoint B and tag `v0.1`
