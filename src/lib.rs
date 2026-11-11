@@ -3,3 +3,4 @@ pub fn hello(){
 }
 
 pub mod token;
+pub mod lexer;

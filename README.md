@@ -39,7 +39,7 @@ Execution / Bytecode / Machine Code
 - [x] 1.1 Tokens in theory
 - [x] 1.2 First file, first lines (`src/token.rs`)
 - [x] 1.3 Finish the token kinds
-- [] 1.4 Token with position
+- [x] 1.4 Token with position
 - [] 1.5 Lexer skeleton
 - [] 1.6 Single-character tokens
 - [] 1.7 Integers
