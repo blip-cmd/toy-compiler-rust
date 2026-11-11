@@ -1,0 +1,14 @@
+String vs &str
+why lex over &str not String
+
+mut vs imu
+
+What is an enum?
+What is a struct?
+About println!("",)
+In Rust, usize is an unsigned pointer-sized integer, standard for indices and counts
+
+rust types, standard types and what?
+Some(c) means?
+why impl around a struct
+

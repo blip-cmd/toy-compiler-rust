@@ -33,7 +33,7 @@ Execution / Bytecode / Machine Code
 - [x] 0.4 Push to GitHub
 - [x] 0.5 README plan
 - [x] 0.6 Level 1 language spec
-- [ ] 0.7 Library and main
+- [x] 0.7 Library and main
 
 ### Level 1: Arithmetic calculator
 - [x] 1.1 Tokens in theory
