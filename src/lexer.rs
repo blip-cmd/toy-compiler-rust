@@ -1,6 +1,15 @@
+use crate::token::{Token,TokenKind};
+
 pub struct Lexer{
     source: Vec<char>,
     pos: usize,
+    pub line: usize,
+    pub col: usize,
+}
+
+#[derive(Debug, PartialEq)]
+pub struct CompileError{
+    pub message: String,
     pub line: usize,
     pub col: usize,
 }
@@ -36,6 +45,46 @@ impl Lexer{
             Some(ch)
         }
     }
+    fn skip_whitespace(&mut self){
+        while let Some(ch) = self.peek(){
+            if ch.is_whitespace(){
+                self.advance();
+            } else {
+                break;
+            }
+        }
+    }
+    pub fn next_token(&mut self) -> Result<Token,CompileError>{
+        self.skip_whitespace();
+        let start_line = self.line;
+        let start_col = self.col;
+
+        let ch = match self.advance(){
+            Some(c) => c,
+            None => return Ok(Token::new(TokenKind::Eof, start_line, start_col)),
+        };
+
+        let kind = match ch{
+            '+' => TokenKind::Plus,
+            '-' => TokenKind::Minus,
+            '*' => TokenKind::Star,
+            '/' => TokenKind::Slash,
+            '(' => TokenKind::LParen,
+            ')' => TokenKind::RParen,
+            unexpected => {
+                return Err(CompileError{
+                    message: format!("unexpected character: {}", unexpected),
+                    line: start_line,
+                    col: start_col,
+                });
+            }
+        };
+
+        Ok(Token::new(kind, start_line, start_col))
+
+    }
+
+    
 }
 
 #[cfg(test)]
@@ -78,4 +127,24 @@ mod tests {
         assert_eq!(lexer.col, 2);
         assert_eq!(lexer.advance(), None);
     }
+
+    #[test]
+    fn test_single_character_tokens(){
+        let mut lexer = Lexer::new("+-*/()");
+        let expected_kinds = [
+            TokenKind::Plus,
+            TokenKind::Minus,
+            TokenKind::Star,
+            TokenKind::Slash,
+            TokenKind::LParen,
+            TokenKind::RParen,
+            TokenKind::Eof,
+        ];
+
+        for x in expected_kinds{
+            let token = lexer.next_token().expect("expected valid token");
+            assert_eq!(token.kind, x);
+        }
+    }
 }
+

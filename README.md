@@ -41,7 +41,7 @@ Execution / Bytecode / Machine Code
 - [x] 1.3 Finish the token kinds
 - [x] 1.4 Token with position
 - [x] 1.5 Lexer skeleton
-- [] 1.6 Single-character tokens
+- [x] 1.6 Single-character tokens
 - [] 1.7 Integers
 - [] 1.8 Lexer errors
 - [] 1.9 Dump tokens (`--dump-tokens`)
