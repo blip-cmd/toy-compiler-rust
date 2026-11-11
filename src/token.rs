@@ -8,5 +8,17 @@ pub enum TokenKind {
     LParen,
     RParen,
     Eof,
-    
+}
+
+#[derive(Debug, PartialEq)]
+pub struct Token{
+    pub kind: TokenKind,
+    pub line: usize,
+    pub col: usize,
+}
+
+impl Token{
+    pub fn new(kind: TokenKind, line: usize, col: usize) -> Self {
+        Self { kind, line, col }
+    }
 }

@@ -1,4 +1,5 @@
 use toy_compiler::token::TokenKind;
+use toy_compiler::token::Token;
 
 fn main() {
     // let tok = TokenKind::Plus;
@@ -37,4 +38,7 @@ fn main() {
         // println!("{:?}", tok);
         println!("{:?}", tok);
     }
+
+    let token = Token::new(TokenKind::Int(42), 1, 1);
+    println!("{:?}", token);
 }
