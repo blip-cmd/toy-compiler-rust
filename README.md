@@ -38,7 +38,7 @@ Execution / Bytecode / Machine Code
 ### Level 1: Arithmetic calculator
 - [x] 1.1 Tokens in theory
 - [x] 1.2 First file, first lines (`src/token.rs`)
-- [] 1.3 Finish the token kinds
+- [x] 1.3 Finish the token kinds
 - [] 1.4 Token with position
 - [] 1.5 Lexer skeleton
 - [] 1.6 Single-character tokens
