@@ -1,4 +1,6 @@
+use toy_compiler::token::TokenKind;
+
 fn main() {
-    println!("Hello, world!");
-    toy_compiler::hello();
+    let tok = TokenKind::Plus;
+    println!("{:?}", tok);
 }
