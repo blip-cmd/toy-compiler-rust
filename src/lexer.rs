@@ -42,7 +42,8 @@ impl Lexer{
             } else {
                 self.col += 1;
             }
-            Some(ch)
+            Some(ch) //returns an Option<char> containing the character that was advanced over
+            //
         }
     }
     fn skip_whitespace(&mut self){
@@ -52,6 +53,27 @@ impl Lexer{
             } else {
                 break;
             }
+        }
+    }
+
+    fn lex_number(&mut self, first_digit: char, start_line:usize, start_col: usize) -> Result<Token, CompileError>{
+        let mut digits = String::new();
+        digits.push(first_digit);
+
+        while let Some(ch) = self.peek(){
+            if ch.is_ascii_digit(){
+                digits.push(self.advance().unwrap());
+            } else {
+                break;
+            }
+        }
+        match digits.parse::<i64>(){
+            Ok(value) => Ok(Token::new(TokenKind::Int(value), start_line,start_col)),
+            Err(_) => Err(CompileError{
+                message: format!("invalid integer literal: '{}' is out of range for i64",digits),
+                line:start_line,
+                col:start_col,
+            }),
         }
     }
     pub fn next_token(&mut self) -> Result<Token,CompileError>{
@@ -71,6 +93,7 @@ impl Lexer{
             '/' => TokenKind::Slash,
             '(' => TokenKind::LParen,
             ')' => TokenKind::RParen,
+            ch if ch.is_ascii_digit() => return self.lex_number(ch,start_line, start_col),
             unexpected => {
                 return Err(CompileError{
                     message: format!("unexpected character: {}", unexpected),
@@ -79,6 +102,7 @@ impl Lexer{
                 });
             }
         };
+
 
         Ok(Token::new(kind, start_line, start_col))
 
@@ -145,6 +169,15 @@ mod tests {
             let token = lexer.next_token().expect("expected valid token");
             assert_eq!(token.kind, x);
         }
+    }
+
+    #[test]
+    fn test_integers_and_operators() {
+        let mut lexer = Lexer::new("12 + 345");
+        assert_eq!(lexer.next_token().unwrap().kind, TokenKind::Int(12));
+        assert_eq!(lexer.next_token().unwrap().kind, TokenKind::Plus);
+        assert_eq!(lexer.next_token().unwrap().kind, TokenKind::Int(345));
+        assert_eq!(lexer.next_token().unwrap().kind, TokenKind::Eof);
     }
 }
 

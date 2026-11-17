@@ -1,8 +1,8 @@
 # Tutor tracker (agent-owned)
 
 Mode: tutor
-Current: Level 1, step 1.7
-Last session: 2026-11-11, Steps 1.2 to 1.6 completed and verified with 5 passing tests
+Current: Level 1, step 1.8
+Last session: 2026-11-17, Step 1.7 (integers) complete with 6 passing tests. Starting Step 1.8.
 
 ## Diagnostic results
 | Topic | Rating (none, shaky, solid) | Evidence |
@@ -24,6 +24,7 @@ Last session: 2026-11-11, Steps 1.2 to 1.6 completed and verified with 5 passing
 | 2026-11-11 | 1.4 | Design: Token position timing and coordinate prediction | partly |
 | 2026-11-11 | 1.5 | Design: advance vs peek, SSOT for position | right |
 | 2026-11-11 | 1.6 | Design: Lexer whitespace skipping and start column semantics | right |
+| 2026-11-17 | 1.7 | Explain: Maximal munch and integer overflow handling | right |
 
 ## Decisions confirmed by the owner
 - Language: Rust
