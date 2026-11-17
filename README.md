@@ -43,7 +43,7 @@ Execution / Bytecode / Machine Code
 - [x] 1.5 Lexer skeleton
 - [x] 1.6 Single-character tokens
 - [x] 1.7 Integers
-- [] 1.8 Lexer errors
+- [x] 1.8 Lexer errors
 - [] 1.9 Dump tokens (`--dump-tokens`)
 - [] 1.10 Lexer golden tests
 - [] 1.11 Checkpoint A

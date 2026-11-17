@@ -111,6 +111,21 @@ impl Lexer{
     
 }
 
+// in rust, impl means implementation, and it is used to define methods for a struct or enum. In this case, we are implementing methods for the Lexer struct. The methods defined in the impl block can be called on instances of the Lexer struct.
+impl CompileError{
+    pub fn render(&self, source: &str) -> String{
+        //find the specific line of text by splitting on newlines
+        let line_text = source.lines().nth(self.line -1).unwrap_or("");
+        let indent=" ".repeat(self.col.saturating_sub(1)); //.saturating_sub(x) means that if self.col is less than x, it will return 0 instead of panicking
+
+        //format!() means that we are creating a formatted string. The {} are placeholders for the variables
+        format!(
+            "error: {}\n  --> line {}, col {}:\n   |\n{:2} | {}\n   | {}^",
+            self.message, self.line, self.col, self.line, line_text, indent
+        )
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -178,6 +193,33 @@ mod tests {
         assert_eq!(lexer.next_token().unwrap().kind, TokenKind::Plus);
         assert_eq!(lexer.next_token().unwrap().kind, TokenKind::Int(345));
         assert_eq!(lexer.next_token().unwrap().kind, TokenKind::Eof);
+    }
+
+    #[test]
+    fn test_errot_caret_display(){
+        let input = "1 $ 2";
+        let mut lexer = Lexer::new(input);
+
+        //in rust assert_eq! has an ! meaning that it is a macro, not a function. Macros are like functions, but they can take a variable number of arguments and can be used to generate code at compile time. The ! means that it is a macro, not a function. 
+        assert_eq!(lexer.next_token().unwrap().kind, TokenKind::Int(1));
+
+        //unwrap_err is for Result<T,E> and it will return the error value if the result is an Err, otherwise it will panic. In this case, we are expecting an error because the next token is a $ which is not a valid token.
+        //a panic is a runtime error that occurs when the program encounters an unexpected condition. In this case, we are expecting an error because the next token is a $ which is not a valid token.
+        //TODO why unwrap and unwrap_err?
+        let err = lexer.next_token().unwrap_err();
+        assert_eq!(err.line, 1);
+        assert_eq!(err.col, 3);
+
+        //err here is a CompileError struct, and we are calling the render method on it to get a formatted string that shows the error message, line number, column number, and the line of code where the error occurred with a caret pointing to the column where the error occurred.
+        let rendered = err.render(input);
+        println!("\nRendered Error:\n{}", rendered);
+
+        assert!(rendered.contains("unexpected character: $"));
+        assert!(rendered.contains("1 | 1 $ 2"));
+        assert!(rendered.contains("   |   ^"));
+
+        
+
     }
 }
 
