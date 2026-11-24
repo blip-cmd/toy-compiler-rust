@@ -1,44 +1,37 @@
 use toy_compiler::token::TokenKind;
-use toy_compiler::token::Token;
+// use toy_compiler::token::Token;
+use std::env::args;
+use toy_compiler::lexer::Lexer;
 
 fn main() {
-    // let tok = TokenKind::Plus;
-    // println!("{:?}", tok);
+    let args: Vec<String> = args().collect();
+    // println!("{:?}", args);
 
-    // let tok2 = TokenKind::Int(42);
-    // println!("{:?}", tok2);
-
-    // let tok3 = TokenKind::Eof;
-    // println!("{:?}", tok3);
-
-    // let tok4 = TokenKind::LParen;
-    // println!("{:?}", tok4);
-
-    // let tok5 = TokenKind::RParen;
-    // println!("{:?}", tok5);
-
-    // let tok6 = TokenKind::Star;
-    // println!("{:?}", tok6);
-
-    // let tok7 = TokenKind::Slash;
-    // println!("{:?}", tok7);
-
-    let tokens = [
-        TokenKind::Plus,
-        TokenKind::Minus,
-        TokenKind::Int(42),
-        TokenKind::Star,
-        TokenKind::Slash,
-        TokenKind::LParen,
-        TokenKind::RParen,
-        TokenKind::Eof,
-    ];
-
-    for tok in tokens.iter() {
-        // println!("{:?}", tok);
-        println!("{:?}", tok);
+    //guard clause
+    if args.len() <3 || args[1] != "--dump-tokens"{
+        eprintln!("Usage: toy-compiler --dump-tokens \"<expression>\"");
+        std::process::exit(1);
     }
 
-    let token = Token::new(TokenKind::Int(42), 1, 1);
-    println!("{:?}", token);
+    let source = &args[2];
+    // println!("Source expression: {}", source);
+
+    let mut lexer = Lexer::new(source);
+
+    loop {
+        match lexer.next_token(){
+            Ok(token)=>{
+                let is_eof = token.kind == TokenKind::Eof;
+                println!("{:?}", token);
+                if is_eof{
+                    break;
+            }
+            }
+            Err(e) => {
+                eprintln!("Error: {}", e.render(source));
+                std::process::exit(1);
+            }
+        }
+    }
+
 }
