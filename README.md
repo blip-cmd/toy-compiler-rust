@@ -1,12 +1,40 @@
 # Toy Compiler in Rust
 
-A hands-on, educational compiler built from scratch in Rust, translating high-level expressions into lowered execution targets without external parsing frameworks.
+A small compiler built from scratch in Rust, with no parser generators or other external crates, to learn compiler engineering one stage at a time.
 
-We chose Rust to learn compiler engineering with explicit memory layout, algebraic data types (`enum`), and exhaustive pattern matching (`match`), balancing low-level control with safety.
+**Status: in progress.** The lexer for an integer arithmetic language works and has unit tests. The parser, semantic analysis and evaluation are planned and not written yet. The checklist below tracks every step.
+
+Rust was chosen for explicit memory layout, algebraic data types (`enum`) and exhaustive pattern matching (`match`).
 
 [A course mapping from my school time](https://notebook.google.com/notebook/b7362179-7b82-44e8-8f9b-98052c9afc48/artifact/6c0c25f7-5c4a-4335-a94c-51f13bd9f572)
 
-## Architecture Pipeline
+## What works today
+
+- Tokens: integers (`i64`), `+ - * /`, parentheses and end of file, defined in [src/token.rs](src/token.rs).
+- A hand-written lexer that records the line and column of every token, in [src/lexer.rs](src/lexer.rs).
+- Errors as values: unexpected characters and integers too large for `i64` return a `CompileError`, rendered with the source line and a caret.
+- A short language spec with valid and invalid inputs, in [docs/spec.md](docs/spec.md).
+
+## Tech stack
+
+Rust (2024 edition), Cargo, no dependencies.
+
+## How to run
+
+```bash
+git clone https://github.com/blip-cmd/toy-compiler-rust.git
+cd toy-compiler-rust
+cargo test   # lexer unit tests
+cargo run    # prints sample tokens
+```
+
+## What I would improve next
+
+- Connect the lexer to the command line with `--dump-tokens`.
+- Add golden tests for the lexer and run `cargo test` in CI.
+- Write the grammar, then the AST, a precedence-aware parser and a tree-walking evaluator.
+
+## Planned architecture
 
 ```text
 Source Code
