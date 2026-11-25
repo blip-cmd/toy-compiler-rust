@@ -1,0 +1,7 @@
+Token { kind: Int(1), line: 1, col: 1 }
+Token { kind: Plus, line: 1, col: 3 }
+error: unexpected character: #
+  --> line 2, col 3:
+   |
+ 2 |   # 2
+   |   ^

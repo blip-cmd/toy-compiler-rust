@@ -28,7 +28,7 @@ fn main() {
             }
             }
             Err(e) => {
-                eprintln!("Error: {}", e.render(source));
+                eprintln!("{}", e.render(source));
                 std::process::exit(1);
             }
         }

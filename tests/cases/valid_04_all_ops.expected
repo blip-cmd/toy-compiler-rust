@@ -1,0 +1,7 @@
+Token { kind: Plus, line: 1, col: 1 }
+Token { kind: Minus, line: 1, col: 2 }
+Token { kind: Star, line: 1, col: 3 }
+Token { kind: Slash, line: 1, col: 4 }
+Token { kind: LParen, line: 1, col: 5 }
+Token { kind: RParen, line: 1, col: 6 }
+Token { kind: Eof, line: 1, col: 7 }

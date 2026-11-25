@@ -1,0 +1,10 @@
+Token { kind: Int(12), line: 1, col: 1 }
+Token { kind: Plus, line: 1, col: 3 }
+Token { kind: Int(3), line: 1, col: 4 }
+Token { kind: Star, line: 1, col: 5 }
+Token { kind: LParen, line: 1, col: 6 }
+Token { kind: Int(4), line: 1, col: 7 }
+Token { kind: Minus, line: 1, col: 8 }
+Token { kind: Int(1), line: 1, col: 9 }
+Token { kind: RParen, line: 1, col: 10 }
+Token { kind: Eof, line: 1, col: 11 }

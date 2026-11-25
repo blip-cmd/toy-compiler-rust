@@ -1,0 +1,5 @@
+error: invalid integer literal: '99999999999999999999999' is out of range for i64
+  --> line 1, col 1:
+   |
+ 1 | 99999999999999999999999
+   | ^

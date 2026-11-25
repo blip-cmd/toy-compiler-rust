@@ -1,0 +1,5 @@
+error: unexpected character: @
+  --> line 1, col 1:
+   |
+ 1 | @
+   | ^

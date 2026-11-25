@@ -1,0 +1,4 @@
+Honest costs
+
+Week 1 will be slow. Recursive AST types need Box, and the borrow checker will frustrate you.
+The temptation is to let the agent “fix the borrow errors”. Do not. Those errors are the lesson. Ask the agent to explain the error, then fix it yourself.

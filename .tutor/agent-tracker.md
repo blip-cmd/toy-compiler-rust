@@ -1,8 +1,8 @@
 # Tutor tracker (agent-owned)
 
 Mode: tutor
-Current: Level 1, step 1.9
-Last session: 2026-11-17, Steps 1.7 and 1.8 complete (integers, lexer errors and caret rendering verified). Ready for Step 1.9.
+Current: Level 1, step 1.12
+Last session: 2026-11-25, Checkpoint A (Step 1.11) passed! Lexer stage complete. Ready for Step 1.12 (Grammar in theory).
 
 ## Diagnostic results
 | Topic | Rating (none, shaky, solid) | Evidence |
@@ -27,11 +27,14 @@ Last session: 2026-11-17, Steps 1.7 and 1.8 complete (integers, lexer errors and
 | 2026-11-11 | 1.6 | Design: Lexer whitespace skipping and start column semantics | right |
 | 2026-11-17 | 1.7 | Explain: Maximal munch and integer overflow handling | right |
 | 2026-11-17 | 1.8 | Explain: Result vs panic, caret spacing calculation | right |
+| 2026-11-24 | 1.9 | Explain: CLI vs library split, pipeline observability, argv[0] | right |
+| 2026-11-25 | 1.10 | Explain: golden tests, invalid inputs, integration test visibility | partly |
+| 2026-11-25 | 1.11 | Checkpoint A: tokens vs lexemes, maximal munch, positions, Result errors, explain-back | right |
 
 ## Decisions confirmed by the owner
 - Language: Rust
 - Repo layout: standard Cargo project
 
 ## Next session plan
-1. Step 1.9: Dump tokens CLI flag (`--dump-tokens`).
-2. Step 1.10: Lexer golden test suite.
+1. Step 1.12: Grammar in theory (context-free grammars, precedence, associativity).
+2. Step 1.13: Write the EBNF (`docs/grammar.ebnf`).

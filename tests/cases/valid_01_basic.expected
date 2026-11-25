@@ -1,0 +1,4 @@
+Token { kind: Int(1), line: 1, col: 1 }
+Token { kind: Plus, line: 1, col: 3 }
+Token { kind: Int(2), line: 1, col: 5 }
+Token { kind: Eof, line: 1, col: 6 }

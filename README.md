@@ -44,9 +44,9 @@ Execution / Bytecode / Machine Code
 - [x] 1.6 Single-character tokens
 - [x] 1.7 Integers
 - [x] 1.8 Lexer errors
-- [] 1.9 Dump tokens (`--dump-tokens`)
-- [] 1.10 Lexer golden tests
-- [] 1.11 Checkpoint A
+- [x] 1.9 Dump tokens (`--dump-tokens`)
+- [x] 1.10 Lexer golden tests
+- [x] 1.11 Checkpoint A
 - [] 1.12 Grammar in theory
 - [] 1.13 Write the EBNF (`docs/grammar.ebnf`)
 - [] 1.14 The AST (`src/ast.rs`)
@@ -54,7 +54,7 @@ Execution / Bytecode / Machine Code
 - [] 1.16 Primary expressions
 - [] 1.17 Precedence and associativity
 - [] 1.18 Parse errors
-- [] 1.19 Dump AST (`--dump-ast`)
+- [] 1.19 Dump AST (`--dump-ast`)43
 - [] 1.20 Tree-walking evaluator
 - [] 1.21 End-to-end tests and CI
 - [] 1.22 Checkpoint B and tag `v0.1`
